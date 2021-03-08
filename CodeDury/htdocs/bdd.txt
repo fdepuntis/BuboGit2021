@@ -1,0 +1,4 @@
+1           120         0,3                     0000000039594658  Incandescence  Candelabre de style  5.0         43.518788   1.313027    165         0           Colomiers   Victor Hugo  15          150620                
+2           120         0,3                     0000000039594658  Incandescence  Candelabre de style  5.0         43.51877    1.312992    165         0           Colomiers   Victor Hugo  15          150620                
+3           120         0,3                     0000000039594658  Incandescence  Candelabre de style  5.0         43.518763   1.31299     165         0           Colomiers   Victor Hugo  15          150620                
+4           120         0,3                     0000000039594658  Incandescence  Candelabre de style  5.0         43.51876    1.312992    165         0           Colomiers   Victor Hugo  15          150620                
