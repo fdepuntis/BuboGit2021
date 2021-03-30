@@ -277,7 +277,7 @@
 
                 </fieldset>
             
-            <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<u>Configuration GPS:</h2></u> <!-- essayer de trouver un autre moyen pour décaler la ligne -->
+            <h2><u>Configuration GPS:</h2></u>
 
 
             <fieldset class="ui-grid-a">
@@ -291,18 +291,18 @@
             </fieldset>
             <br>   
             <div>
-                <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<u>Configuration taille de la police:</h2></u>
+                <h2><u>Configuration taille de la police:</h2></u>
                 <fieldset class="ui-mobile label" >
                     
                          
-                         <button onclick="setActiveStyleSheet('ihmmartin'); return false">Normal </button >
-                         <button onclick="setActiveStyleSheet('gihmmartin'); return false">Grand </button >
+                         <button onclick="setActiveStyleSheet('IHM'); return false">Normal </button >
+                         <button onclick="setActiveStyleSheet('GIHM'); return false">Grand </button >
                 </fieldset>
            </div>            
             <div>
                 <fieldset >
             
-                    <label for="choixGeo"><h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<u>Type de géolocalisation:</label></u></h2>
+                    <label for="choixGeo"><h2><u>Type de géolocalisation:</label></u></h2>
                     <select id="choixGeo">
                       <option value="manu">manuelle</option>
                       <option value="auto">automatique</option>
@@ -313,7 +313,7 @@
             <div>
                 <fieldset >
 
-                    <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<u>Modification de la couleur principale:</u></h2>
+                    <h2><u>Modification de la couleur principale:</u></h2>
 
                     <div style="color:white">
 
@@ -334,7 +334,7 @@
                 </fieldset>
 
                 <fieldset >
-                    <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<u>Modification de la couleur secondaire:</u></h2>
+                    <h2><u>Modification de la couleur secondaire:</u></h2>
 
                     <div style="color:white">
 
@@ -351,7 +351,35 @@
                     <div   class="ui-block-b"  style="width: 30%;"><input id="dColor1"  style="background-color:white;" type="text" name="COLOR1" ></div>
 
                 </fieldset>
+            <br>
+                <fieldset class="ui-grid-a">    
+                    
+                    <h2><u>Adresses electroniques:</u></h2>
+                    
+                    <div class="ui-block-a" style="width: 70%;color:white"><label for="head">Entrez l'adresse source : </label></div>
+                    <div   class="ui-block-b"  style="width: 30%;"><input id="mailsrc"  style="background-color:white;" type="text" name="MAIL" ></div>
+                    
+                    <br>
+                    
+                    <div class="ui-block-a" style="width: 70%;color:white"><label for="head">Entrez l'adresse destinataire : </label></div>
+                    <div   class="ui-block-b"  style="width: 30%;"><input id="maildest"  style="background-color:white;" type="text" name="MAIL" ></div>
+                     
+                    <br>
+                    
+                    <div class="ui-block-a" style="width: 70%;color:white"><label for="head">Entrez le mot de passe de l'expéditeur : </label></div>
+                    <div   class="ui-block-b"  style="width: 30%;"><input id="mdpexp"  style="background-color:white;" type="text" name="MAIL" ></div>
+                     
+                    <br>
+                    
+                    <div class="ui-block-a" style="width: 70%;color:white"><label for="head">Entrez le numéro de port de l'expéditeur : </label></div>
+                    <div   class="ui-block-b"  style="width: 30%;"><input id="portexp"  style="background-color:white;" type="text" name="MAIL" ></div>
+                     
+                    <br>
+                    
+                    <div class="ui-block-a" style="width: 70%;color:white"><label for="head">Messagerie du client : </label></div>
+                    <div   class="ui-block-b"  style="width: 30%;"><input id="msgclient"  style="background-color:white;" type="text" name="MAIL" ></div>
 
+                </fieldset>
 
 
             </div>

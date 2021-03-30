@@ -1,6 +1,7 @@
 var identifiant;
 var trId;
 var dateEnregistrement;
+var heureEnregistrement; 
 var color= "#410202";
 var colortab='#c19b9b';
 var automatique=false;
@@ -17,7 +18,7 @@ var automatique=false;
     $("#modeRevue").on('click', ChangerMode);
     $("#bShutdown").on('click', stopSystem);
     $("#bAllDelete").on('click', allDelete);
-    $("#valider").on('click',majCouleur);
+    $("#valider").on('click',BoutonValider);
     $("#buttoncolor").on('click',colordefault);
     $("#buttoncolor1").on('click', colordefault1);
     $("#envoibdd").on('click',envoimailbdd);
@@ -101,8 +102,8 @@ function majcolorp3(){
     $('.ui-btn').css('margin-left','0.1em');     
     $('.ui-btn').css('margin-right','0.1em');     
     $('.ui-btn').css('min-height','1em');   
-    $('.ui-btn').css('background-color',"#000000");
-    $('.ui-body-inherit').css('background-color',"#000000");
+    $('.ui-btn').css('background-color',"#C19B9B");
+    $('.ui-body-inherit').css('background-color',"#C19B9B");
 }
 function displayList(){
     $('.ui-btn').css('padding-left','0em');
@@ -227,6 +228,34 @@ function estLEnregistrement(element,index,array)
     return false;
 }
 
+function BoutonValider()
+{
+    majCouleur();
+   
+    formData = new FormData();
+    
+    formData.append('@source', $('#mailsrc').val());
+    formData.append('@destinataire', $('#maildest').val());
+    formData.append('mdp', $('#mdpexp').val());
+    formData.append('port', $('#portexp').val());
+    formData.append('messagerie', $('#msgclient').val());
+    
+    alert("Informations bien validées");
+    console.log("It's OK -----");
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            console.log("It's OK");
+             }
+    };
+
+    request.open("POST", "../cgi-bin/boutonValider.cgi");
+    request.send(formData);
+    
+    
+
+}
+
 function BoutonEnregistrer()
 {
 	formData = new FormData();
@@ -254,6 +283,7 @@ function BoutonEnregistrer()
 	formData.append('fluxlum', $('#dLum').val());
 	formData.append('nbImage', tabPhoto.length);
         formData.append('date', dateEnregistrement);
+	formData.append('heure', heureEnregistrement); 
         //envoi(identifiant); envoi photo non traité
     	if($('#nouveau').val() === 'Annuler')
     	{
@@ -312,6 +342,7 @@ function BoutonEnregistrer()
                     tab[indice].ALBEDO=$('#dAlbedo').val();
                     tab[indice].ULOR=($('#dULOR').val().split("%"))[0];
                     tab[indice].DATE=dateEnregistrement;
+		    tab[indice].HEURE=heureEnregistrement;
                     tab[indice].ID=identifiant;
                     genererTableau(tab);
                     $('#dLatitude').val('');
@@ -495,6 +526,7 @@ function ClicTableau () {
          $('#dULOR').val(tab[trId].ULOR+"%");
          $('#dULOR').selectmenu('refresh');
          dateEnregistrement=tab[trId].DATE;
+	 heureEnregistrement=tab[trId].HEURE; 
          identifiant=tab[trId].ID;
 
     $('#modifier').prop('disabled', false);          //Change l'état de disable
@@ -731,6 +763,7 @@ function BoutonGeolocaliser() {   // NE Pas OULIER DE CHANGER LA PERMISSION
                 $('#save').prop('disabled', false);
                 $('#save').button('refresh');
                 dateEnregistrement=reponse.DATE;       
+		heureEnregistrement=reponse.HEURE; 
 
             }
             else alert("reponse = " + reponse.LATITUDE + ", " + reponse.LONGITUDE+ ", " + reponse.ALTITUDE);
