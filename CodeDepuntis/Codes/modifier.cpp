@@ -198,6 +198,8 @@ int main(){
 			} 
 			else 
 				fichier << "No text entered for nbImage" << endl; 
+                        
+                        
 			//--------------------------R�cup�ration date -------------------------
 			fvalue = cgi.getElement("date"); 
 			if( !fvalue->isEmpty() && fvalue != (*cgi).end()) { 
@@ -207,6 +209,9 @@ int main(){
 			else 
 				fichier << "No text entered for date" << endl; 
                         
+                        
+                        
+                        
                         //--------------------------R�cup�ration heure -------------------------
 			fvalue = cgi.getElement("heure"); 
 			if( !fvalue->isEmpty() && fvalue != (*cgi).end()) { 
@@ -215,6 +220,7 @@ int main(){
 			} 
 			else 
 				fichier << "No text entered for heure" << endl; 
+                        
 			//--------------------------R�cup�ration ID -------------------------
 			fvalue = cgi.getElement("ID"); 
 			if( !fvalue->isEmpty() && fvalue != (*cgi).end()) { 

@@ -311,9 +311,9 @@ void BDD::modifierEnregistrement(int id, int puissance, string albedo, string fl
         sqlite3_bind_text(stmt,13,rue.c_str(),rue.length(),0);
         sqlite3_bind_int(stmt,14,ulor);
         sqlite3_bind_text(stmt,15,date.c_str(),6,0);
-        sqlite3_bind_text(stmt,15,heure.c_str(),6,0);
-        sqlite3_bind_text(stmt,16,notes.c_str(),notes.length(),0);
-        sqlite3_bind_int(stmt,17,id);
+        sqlite3_bind_text(stmt,16,heure.c_str(),6,0);
+        sqlite3_bind_text(stmt,17,notes.c_str(),notes.length(),0);
+        sqlite3_bind_int(stmt,18,id);
 
 
         rc =sqlite3_step(stmt);

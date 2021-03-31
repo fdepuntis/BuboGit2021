@@ -43,6 +43,7 @@
       <itemPath>../Luxmetre.cpp</itemPath>
       <itemPath>../../Codes/Mail.cpp</itemPath>
       <itemPath>../enregistrer.cpp</itemPath>
+      <itemPath>../envoyerBDD.cpp</itemPath>
       <itemPath>../listerEnregistrements.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
       <itemPath>../modifier.cpp</itemPath>
@@ -143,6 +144,8 @@
       </item>
       <item path="../enregistrer.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="../envoyerBDD.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="../listerEnregistrements.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../modifier.cpp" ex="false" tool="1" flavor2="0">
@@ -235,6 +238,8 @@
       <item path="../Luxmetre.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="../enregistrer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../envoyerBDD.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../listerEnregistrements.cpp" ex="false" tool="1" flavor2="0">
       </item>

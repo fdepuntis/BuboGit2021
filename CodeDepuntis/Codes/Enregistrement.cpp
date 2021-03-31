@@ -6,7 +6,7 @@
 using namespace std;
 
 #include "Enregistrement.h"
-#include "../Codes/Collecteur.h"
+
 #include "../Codes/Lampadaire.h"
 #include "../Codes/Galerie.h"
 #include "../Codes/Geolocalisation.h"

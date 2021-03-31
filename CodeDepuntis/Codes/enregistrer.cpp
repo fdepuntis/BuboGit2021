@@ -269,8 +269,11 @@ int main()
                         
  			aNotes=enregistrement->getNotes();
 			cout<<"\n\t\t\t\"NOTES\":\""<<aNotes<<"\"";
-			cout<<"\n\t\t}\n";
+			
+                        cout<<"\n\t\t}\n";
 			system("sqlite3 /home/pi/bdd/Enregistrement.db < /home/pi/ShelScript.txt");
-			system("sudo cp /usr/local/apache2/cgi-bin/bdd.txt /home/pi");
+			
+                        system("sudo cp /usr/local/apache2/cgi-bin/bdd.txt /home/pi");
+                        system("sudo cp /usr/local/apache2/cgi-bin/bdd.txt /usr/local/apache2/htdocs");
     return 0;
 }

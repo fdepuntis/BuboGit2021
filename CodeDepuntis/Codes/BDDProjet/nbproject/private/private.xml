@@ -9,10 +9,9 @@
         <group>
             <file>rfs://pi@bubo2.local:22/home/pi/Codes/modifier.cpp</file>
             <file>rfs://pi@bubo2.local:22/home/pi/Codes/listerEnregistrements.cpp</file>
-            <file>rfs://pi@bubo2.local:22/home/pi/Codes/Logger.cpp</file>
+            <file>rfs://pi@bubo2.local:22/home/pi/Codes/envoyerBDD.cpp</file>
             <file>rfs://pi@bubo2.local:22/home/pi/Codes/BDDProjet/main.cpp</file>
             <file>rfs://pi@bubo2.local:22/home/pi/Codes/supprimer.cpp</file>
-            <file>rfs://pi@bubo2.local:22/home/pi/Codes/Logger.h</file>
             <file>rfs://pi@bubo2.local:22/home/pi/Codes/enregistrer.cpp</file>
         </group>
     </open-files>

@@ -19,8 +19,8 @@ int Horodatage::dater()
 	leGPS->getChampsRMC(leChamps);
 	extraireDateRMC(leChamps);
 	extraireHeureRMC(leChamps);
-
 }
+
 int Horodatage::extraireDateRMC(string leChamps[200])
 {
 	char laDate[15]={'0'};

@@ -23,7 +23,7 @@ AS=as
 # Macros
 CND_PLATFORM=GNU-Linux
 CND_DLIB_EXT=so
-CND_CONF=Debug
+CND_CONF=Release
 CND_DISTDIR=dist
 CND_BUILDDIR=build
 
@@ -51,6 +51,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/5c0/Logger.o \
 	${OBJECTDIR}/_ext/5c0/Luxmetre.o \
 	${OBJECTDIR}/_ext/5c0/enregistrer.o \
+	${OBJECTDIR}/_ext/5c0/envoyerBDD.o \
 	${OBJECTDIR}/_ext/5c0/listerEnregistrements.o \
 	${OBJECTDIR}/_ext/5c0/modifier.o \
 	${OBJECTDIR}/_ext/5c0/supprimer.o \
@@ -61,8 +62,8 @@ OBJECTFILES= \
 CFLAGS=
 
 # CC Compiler Flags
-CCFLAGS=-l sqlite3 -lcgicc -I /usr/local/include/Poco/ -L /usr/local/lib -lPocoFoundation -lPocoNet -lPocoNetSSL -lPocoUtil -lPocoXML
-CXXFLAGS=-l sqlite3 -lcgicc -I /usr/local/include/Poco/ -L /usr/local/lib -lPocoFoundation -lPocoNet -lPocoNetSSL -lPocoUtil -lPocoXML
+CCFLAGS=
+CXXFLAGS=
 
 # Fortran Compiler Flags
 FFLAGS=
@@ -71,7 +72,7 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=-lpthread
+LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
@@ -84,102 +85,107 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/bddprojet: ${OBJECTFILES}
 ${OBJECTDIR}/_ext/5ec76e66/Ampoule.o: ../../Codes/Ampoule.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/5ec76e66
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5ec76e66/Ampoule.o ../../Codes/Ampoule.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5ec76e66/Ampoule.o ../../Codes/Ampoule.cpp
 
 ${OBJECTDIR}/_ext/5ec76e66/BDD.o: ../../Codes/BDD.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/5ec76e66
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5ec76e66/BDD.o ../../Codes/BDD.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5ec76e66/BDD.o ../../Codes/BDD.cpp
 
 ${OBJECTDIR}/_ext/5ec76e66/Collecteur.o: ../../Codes/Collecteur.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/5ec76e66
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5ec76e66/Collecteur.o ../../Codes/Collecteur.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5ec76e66/Collecteur.o ../../Codes/Collecteur.cpp
 
 ${OBJECTDIR}/_ext/5ec76e66/Enregistrement.o: ../../Codes/Enregistrement.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/5ec76e66
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5ec76e66/Enregistrement.o ../../Codes/Enregistrement.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5ec76e66/Enregistrement.o ../../Codes/Enregistrement.cpp
 
 ${OBJECTDIR}/_ext/5ec76e66/GPS.o: ../../Codes/GPS.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/5ec76e66
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5ec76e66/GPS.o ../../Codes/GPS.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5ec76e66/GPS.o ../../Codes/GPS.cpp
 
 ${OBJECTDIR}/_ext/5ec76e66/Galerie.o: ../../Codes/Galerie.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/5ec76e66
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5ec76e66/Galerie.o ../../Codes/Galerie.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5ec76e66/Galerie.o ../../Codes/Galerie.cpp
 
 ${OBJECTDIR}/_ext/5ec76e66/Geolocalisation.o: ../../Codes/Geolocalisation.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/5ec76e66
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5ec76e66/Geolocalisation.o ../../Codes/Geolocalisation.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5ec76e66/Geolocalisation.o ../../Codes/Geolocalisation.cpp
 
 ${OBJECTDIR}/_ext/5ec76e66/Horodatage.o: ../../Codes/Horodatage.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/5ec76e66
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5ec76e66/Horodatage.o ../../Codes/Horodatage.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5ec76e66/Horodatage.o ../../Codes/Horodatage.cpp
 
 ${OBJECTDIR}/_ext/5ec76e66/Lampadaire.o: ../../Codes/Lampadaire.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/5ec76e66
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5ec76e66/Lampadaire.o ../../Codes/Lampadaire.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5ec76e66/Lampadaire.o ../../Codes/Lampadaire.cpp
 
 ${OBJECTDIR}/_ext/5ec76e66/Mail.o: ../../Codes/Mail.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/5ec76e66
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5ec76e66/Mail.o ../../Codes/Mail.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5ec76e66/Mail.o ../../Codes/Mail.cpp
 
 ${OBJECTDIR}/_ext/b57f3ad/serialib.o: ../../serialib/serialib.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/b57f3ad
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/b57f3ad/serialib.o ../../serialib/serialib.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/b57f3ad/serialib.o ../../serialib/serialib.cpp
 
 ${OBJECTDIR}/_ext/5c0/Config.o: ../Config.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/5c0
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5c0/Config.o ../Config.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5c0/Config.o ../Config.cpp
 
 ${OBJECTDIR}/_ext/5c0/Internet.o: ../Internet.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/5c0
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5c0/Internet.o ../Internet.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5c0/Internet.o ../Internet.cpp
 
 ${OBJECTDIR}/_ext/5c0/Logger.o: ../Logger.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/5c0
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5c0/Logger.o ../Logger.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5c0/Logger.o ../Logger.cpp
 
 ${OBJECTDIR}/_ext/5c0/Luxmetre.o: ../Luxmetre.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/5c0
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5c0/Luxmetre.o ../Luxmetre.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5c0/Luxmetre.o ../Luxmetre.cpp
 
 ${OBJECTDIR}/_ext/5c0/enregistrer.o: ../enregistrer.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/5c0
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5c0/enregistrer.o ../enregistrer.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5c0/enregistrer.o ../enregistrer.cpp
+
+${OBJECTDIR}/_ext/5c0/envoyerBDD.o: ../envoyerBDD.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/5c0
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5c0/envoyerBDD.o ../envoyerBDD.cpp
 
 ${OBJECTDIR}/_ext/5c0/listerEnregistrements.o: ../listerEnregistrements.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/5c0
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5c0/listerEnregistrements.o ../listerEnregistrements.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5c0/listerEnregistrements.o ../listerEnregistrements.cpp
 
 ${OBJECTDIR}/_ext/5c0/modifier.o: ../modifier.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/5c0
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5c0/modifier.o ../modifier.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5c0/modifier.o ../modifier.cpp
 
 ${OBJECTDIR}/_ext/5c0/supprimer.o: ../supprimer.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/5c0
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5c0/supprimer.o ../supprimer.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5c0/supprimer.o ../supprimer.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 # Subprojects
 .build-subprojects:
