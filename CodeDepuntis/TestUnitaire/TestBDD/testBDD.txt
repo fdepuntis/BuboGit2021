@@ -1,0 +1,65 @@
+latitude 43.6158
+after sqlite3_prepare not an error
+after step unknown error
+after sqlite3_finalize not an error
+latitude 43.6157
+after sqlite3_prepare not an error
+after step unknown error
+after sqlite3_finalize not an error
+latitude 43.6157
+after sqlite3_prepare not an error
+after step unknown error
+after sqlite3_finalize not an error
+latitude 43.6158
+after sqlite3_prepare not an error
+after step unknown error
+after sqlite3_finalize not an error
+latitude 43.6158
+after sqlite3_prepare not an error
+after step unknown error
+after sqlite3_finalize not an error
+latitude 43.6157
+after sqlite3_prepare not an error
+after step unknown error
+after sqlite3_finalize not an error
+after DELETE sqlite3_prepare not an error
+after DELETE step unknown error
+after DELETE sqlite3_finalize not an error
+latitude 43.6158
+after sqlite3_prepare not an error
+after step unknown error
+after sqlite3_finalize not an error
+INSERT INTO Enregistrements(power,albedo,flux,buboid,lamp,streetlight,height,latitude,longitude,altitude,nbimages,town,street,ulor,date,heure,notes) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)SQL error: database is lockedlatitude 43.2357
+after sqlite3_prepare unable to open database file
+latitude 43.2357
+after sqlite3_prepare not an error
+after step unknown error
+after sqlite3_finalize not an error
+latitude 43.2357
+after sqlite3_prepare not an error
+after step unknown error
+after sqlite3_finalize not an error
+latitude 43.2357
+after sqlite3_prepare not an error
+after step unknown error
+after sqlite3_finalize not an error
+latitude 43.2357
+after sqlite3_prepare not an error
+after step unknown error
+after sqlite3_finalize not an error
+latitude 43.2357
+after sqlite3_prepare not an error
+after step unknown error
+after sqlite3_finalize not an error
+latitude 43.2357
+after sqlite3_prepare not an error
+after step unknown error
+after sqlite3_finalize not an error
+latitude 43.2357
+after sqlite3_prepare not an error
+after step unknown error
+after sqlite3_finalize not an error
+latitude 43.2357
+after sqlite3_prepare not an error
+after step unknown error
+after sqlite3_finalize not an error
