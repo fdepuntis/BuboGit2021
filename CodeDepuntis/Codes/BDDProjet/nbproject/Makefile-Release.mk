@@ -50,11 +50,11 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/5c0/Internet.o \
 	${OBJECTDIR}/_ext/5c0/Logger.o \
 	${OBJECTDIR}/_ext/5c0/Luxmetre.o \
-	${OBJECTDIR}/_ext/5c0/enregistrer.o \
 	${OBJECTDIR}/_ext/5c0/envoyerBDD.o \
 	${OBJECTDIR}/_ext/5c0/listerEnregistrements.o \
 	${OBJECTDIR}/_ext/5c0/modifier.o \
 	${OBJECTDIR}/_ext/5c0/supprimer.o \
+	${OBJECTDIR}/enregistrer.o \
 	${OBJECTDIR}/main.o
 
 
@@ -157,11 +157,6 @@ ${OBJECTDIR}/_ext/5c0/Luxmetre.o: ../Luxmetre.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5c0/Luxmetre.o ../Luxmetre.cpp
 
-${OBJECTDIR}/_ext/5c0/enregistrer.o: ../enregistrer.cpp 
-	${MKDIR} -p ${OBJECTDIR}/_ext/5c0
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5c0/enregistrer.o ../enregistrer.cpp
-
 ${OBJECTDIR}/_ext/5c0/envoyerBDD.o: ../envoyerBDD.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/5c0
 	${RM} "$@.d"
@@ -181,6 +176,11 @@ ${OBJECTDIR}/_ext/5c0/supprimer.o: ../supprimer.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/5c0
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5c0/supprimer.o ../supprimer.cpp
+
+${OBJECTDIR}/enregistrer.o: enregistrer.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/enregistrer.o enregistrer.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}

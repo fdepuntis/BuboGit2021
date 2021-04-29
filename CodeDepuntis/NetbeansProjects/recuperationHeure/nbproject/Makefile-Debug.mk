@@ -38,7 +38,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/f055e18e/GPS.o \
 	${OBJECTDIR}/_ext/f055e18e/Geolocalisation.o \
 	${OBJECTDIR}/_ext/f055e18e/Horodatage.o \
-	${OBJECTDIR}/_ext/367ebd6e/serialib.o \
+	${OBJECTDIR}/_ext/b57f3ad/serialib.o \
 	${OBJECTDIR}/main.o
 
 
@@ -81,10 +81,10 @@ ${OBJECTDIR}/_ext/f055e18e/Horodatage.o: ../../Depuntis/developpement/Codes/Horo
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f055e18e/Horodatage.o ../../Depuntis/developpement/Codes/Horodatage.cpp
 
-${OBJECTDIR}/_ext/367ebd6e/serialib.o: ../../Depuntis/developpement/Codes/serialib/serialib.cpp 
-	${MKDIR} -p ${OBJECTDIR}/_ext/367ebd6e
+${OBJECTDIR}/_ext/b57f3ad/serialib.o: ../../serialib/serialib.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/b57f3ad
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/367ebd6e/serialib.o ../../Depuntis/developpement/Codes/serialib/serialib.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/b57f3ad/serialib.o ../../serialib/serialib.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}

@@ -7,11 +7,9 @@ using namespace std;
 #define __Collecteur_h__
 
 #include "Enregistrement.h"
-
 #include "GPS.h"
-/*
 #include "Mail.h" 
-#include "Config.h" */
+#include "Config.h" 
 
 #define PBACCESIDENT -1
 #define PBLECTUREIDENT -2
@@ -46,6 +44,7 @@ using namespace std;
 
 		public: string getDonneesEnregistrement(char aLatitude[], char aLongitude[], char aAltitude[4]);
 
+		//public: int modifier(int aId, string aAlbedo, string aFluxLum, string aIdRaspberry, string aTypeAmpoule, string aTypeLampadaire, string aHauteur, double aLatitude, double aLongitude,int aNbImages, string aAgglo, string aRue, int aUlor, string aDate, string aNotes);
 
 		public: void modifier(Enregistrement *aDonnee);
 
@@ -54,6 +53,11 @@ using namespace std;
 				vector<Enregistrement*> getlisteEnregistrements();
 				bool viderTable();
 				int envoyerbdd();
+                public: int mettreCollecteurAJour(); 
+        private : string dateHeureBDD; 
+        public : string getdateHeureBDD(); 
+        public : void setdateHeureBDD(string hour); 
+                               
 	};
 
 

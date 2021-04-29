@@ -1,4 +1,4 @@
-#include <iostream>
+/*#include <iostream>
 #include <vector>
 #include <string>
 #include <stdio.h>
@@ -24,4 +24,4 @@ int main()
 	int testerreur=leCollecteur->envoyerbdd();
 	cout <<"{\n\t\"ERREUR\":\""+ to_string(testerreur)+"\"\n}\n";
 
-}
+}*/

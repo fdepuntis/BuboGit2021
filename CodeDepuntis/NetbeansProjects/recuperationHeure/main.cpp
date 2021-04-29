@@ -19,9 +19,7 @@ int main(int argc, char** argv) {
     GPS*gps = new GPS();
     Geolocalisation*geolocalisation = new Geolocalisation(gps);
     Horodatage*horodatage = new Horodatage(gps);
-
-    cout << geolocalisation->getFIX() << endl; //quand le fix est fait, on va récupérer l'heure sur la raspberry
-    
+   
     char tableau [6]; //création du tableau qui va stocker la date
     horodatage->dater();
 

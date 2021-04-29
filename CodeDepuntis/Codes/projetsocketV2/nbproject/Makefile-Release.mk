@@ -35,12 +35,18 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/Bubo/listerEnregistrements.o \
+	${OBJECTDIR}/BDD.o \
 	${OBJECTDIR}/ClientCGI.o \
 	${OBJECTDIR}/Collecteur.o \
 	${OBJECTDIR}/Enregistrement.o \
 	${OBJECTDIR}/GPS.o \
-	${OBJECTDIR}/Serveur.o
+	${OBJECTDIR}/Galerie.o \
+	${OBJECTDIR}/Horodatage.o \
+	${OBJECTDIR}/Lampadaire.o \
+	${OBJECTDIR}/Logger.o \
+	${OBJECTDIR}/Serveur.o \
+	${OBJECTDIR}/cgicc/CgiEnvironment.o \
+	${OBJECTDIR}/listerEnregistrements.o
 
 
 # C Compiler Flags
@@ -67,10 +73,10 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/projetsocketv2: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/projetsocketv2 ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/Bubo/listerEnregistrements.o: Bubo/listerEnregistrements.cpp 
-	${MKDIR} -p ${OBJECTDIR}/Bubo
+${OBJECTDIR}/BDD.o: BDD.cpp 
+	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Bubo/listerEnregistrements.o Bubo/listerEnregistrements.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/BDD.o BDD.cpp
 
 ${OBJECTDIR}/ClientCGI.o: ClientCGI.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -92,10 +98,40 @@ ${OBJECTDIR}/GPS.o: GPS.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/GPS.o GPS.cpp
 
+${OBJECTDIR}/Galerie.o: Galerie.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Galerie.o Galerie.cpp
+
+${OBJECTDIR}/Horodatage.o: Horodatage.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Horodatage.o Horodatage.cpp
+
+${OBJECTDIR}/Lampadaire.o: Lampadaire.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Lampadaire.o Lampadaire.cpp
+
+${OBJECTDIR}/Logger.o: Logger.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Logger.o Logger.cpp
+
 ${OBJECTDIR}/Serveur.o: Serveur.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Serveur.o Serveur.cpp
+
+${OBJECTDIR}/cgicc/CgiEnvironment.o: cgicc/CgiEnvironment.cpp 
+	${MKDIR} -p ${OBJECTDIR}/cgicc
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cgicc/CgiEnvironment.o cgicc/CgiEnvironment.cpp
+
+${OBJECTDIR}/listerEnregistrements.o: listerEnregistrements.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/listerEnregistrements.o listerEnregistrements.cpp
 
 # Subprojects
 .build-subprojects:

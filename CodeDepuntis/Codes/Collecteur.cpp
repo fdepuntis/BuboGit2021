@@ -225,7 +225,7 @@ string Collecteur::geolocaliser() {
 			date+=laDate[i];
 		}
 		date=string(laDate,6);
-		retour =retour +"\t\"DATE\":\""+date+"\"\n}\n";
+		retour =retour +"\t\"DATE\":\""+date+"\",\n";
 
         
         
@@ -421,7 +421,7 @@ int Collecteur::mettreCollecteurAJour() {
     Geolocalisation*geolocalisation = new Geolocalisation(unGPS);
     Horodatage*horodatage = new Horodatage(unGPS);
 
-    geolocalisation->getFIX(); //quand le fix est fait, on va récupérer l'heure sur la raspberry
+  
 
     char tableau [6]; //création du tableau qui va stocker la date
     horodatage->dater();

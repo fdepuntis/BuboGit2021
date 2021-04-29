@@ -7,7 +7,7 @@
       <itemPath>../../Depuntis/developpement/Codes/GPS.h</itemPath>
       <itemPath>../../Depuntis/developpement/Codes/Geolocalisation.h</itemPath>
       <itemPath>../../Depuntis/developpement/Codes/Horodatage.h</itemPath>
-      <itemPath>../../Depuntis/developpement/Codes/serialib/serialib.h</itemPath>
+      <itemPath>../../serialib/serialib.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -20,7 +20,7 @@
       <itemPath>../../Depuntis/developpement/Codes/Geolocalisation.cpp</itemPath>
       <itemPath>../../Depuntis/developpement/Codes/Horodatage.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
-      <itemPath>../../Depuntis/developpement/Codes/serialib/serialib.cpp</itemPath>
+      <itemPath>../../serialib/serialib.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -82,15 +82,9 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../Depuntis/developpement/Codes/serialib/serialib.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
+      <item path="../../serialib/serialib.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="../../Depuntis/developpement/Codes/serialib/serialib.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
+      <item path="../../serialib/serialib.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -145,15 +139,9 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../Depuntis/developpement/Codes/serialib/serialib.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
+      <item path="../../serialib/serialib.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="../../Depuntis/developpement/Codes/serialib/serialib.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
+      <item path="../../serialib/serialib.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

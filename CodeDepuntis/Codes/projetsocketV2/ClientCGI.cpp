@@ -20,7 +20,7 @@ int main()
 	int sockfd, connfd, length; 
 	struct sockaddr_in servaddr, cli; 
 	char buff[MAX]; 
-	string leMessage = "localiser";
+	string leMessage = "liste";
 
 	// socket create and varification 
 	sockfd = socket(AF_INET, SOCK_STREAM, 0); 
@@ -46,7 +46,7 @@ int main()
 		printf("connected to the server..\n"); 
 
 	// function for chat 
-	length = send(sockfd, leMessage.c_str(),leMessage.size(),0); 
+	length = send(sockfd, leMessage.c_str(), leMessage.size(),0); 
 	printf("Le message est : %s de %d octets\n", leMessage.c_str(), length);
 	memset(buff,0 , sizeof(buff)); 
 	int taille = read(sockfd, buff, sizeof(buff));

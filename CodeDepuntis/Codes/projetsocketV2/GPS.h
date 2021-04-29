@@ -2,7 +2,7 @@
 #define DEF_GPS
 
 #include <stdio.h>
-//#include "../serialib/serialib.h"
+#include "serialib.h"
 #include <iostream>
 #include <iomanip>
 #include <sstream> 
