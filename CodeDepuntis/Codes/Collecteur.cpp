@@ -78,16 +78,10 @@ Collecteur::Collecteur() {
 }
 
 Enregistrement* Collecteur::creerEnregistrement(Enregistrement *aDonnee) {
-    BDD* maBDD = new BDD();
-    //Enregistrement dans la BDD
-    //aDonnee->
-
-    //  Horodatage* horodatage= new Horodatage(); 
-    //     horodatage->dater(); 
-    /* ------------ ICI  -------------------------*/
+  BDD* maBDD = new BDD();
     Enregistrement* dernierEnregistrement = maBDD->sauvegarderDonneesEnregistrement(aDonnee, _identifiant);
 
-    listeEnregistrements.push_back(dernierEnregistrement);
+	listeEnregistrements.insert(listeEnregistrements.begin(), dernierEnregistrement);
 
     //Enregistrement dans la BDD
     return dernierEnregistrement;

@@ -15,6 +15,7 @@ using namespace cgicc;
 
 void Photo::uploadPhoto(string aPhoto, string aIdentifiant) {
 	throw "Not yet implemented";
+        
 }
 
 void Photo::setIdentifiant(string aIdentifiant) {
