@@ -241,29 +241,45 @@ function estLEnregistrement(element,index,array)
     return false;
 }
 
+function isEmail($email) {
+  var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,6})+$/;
+  return regex.test( $email );
+}
+    
 function BoutonValider()
 {
     majCouleur();
-   
-    formData = new FormData();
-    
-    formData.append('@source', $('#mailsrc').val());
-    formData.append('@destinataire', $('#maildest').val());
-    formData.append('mdp', $('#mdpexp').val());
-    formData.append('port', $('#portexp').val());
-    formData.append('messagerie', $('#msgclient').val());
-    
-    alert("Informations bien validées");
-    console.log("It's OK -----");
-    var request = new XMLHttpRequest();
-    request.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-            console.log("It's OK");
-             }
-    };
+    if (($('#mailsrc').val()!=="") && ($('#maildest').val()!=="")&& ($('#mdpexp').val()!==""))
+    {
+        if ((isEmail($('#mailsrc').val())) && ((isEmail($('#maildest').val())))) {
+            formData = new FormData();
 
-    request.open("POST", "../cgi-bin/boutonValider.cgi");
-    request.send(formData);
+            formData.append('@source', $('#mailsrc').val());
+            formData.append('@destinataire', $('#maildest').val());
+            formData.append('mdp', $('#mdpexp').val());
+            formData.append('port', $('#portexp').val());
+            formData.append('messagerie', $('#msgclient').val());
+
+            alert("Informations bien validées");
+
+            var request = new XMLHttpRequest();
+            request.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    console.log("It's OK");
+                     }
+            };
+            request.open("POST", "../cgi-bin/boutonValider.cgi");
+            request.send(formData);
+            $.mobile.changePage( "#page1", { transition: "slide", changeHash: true });    
+        }
+        else alert("adresse non valide")
+}
+else {
+    if(confirm("Pas de configuration d'adresse mail, êtes vous sûr?"))
+    {
+        $.mobile.changePage( "#page1", { transition: "slide", changeHash: true });
+    }
+}
     
     
 
@@ -296,15 +312,15 @@ function BoutonEnregistrer()
 	formData.append('fluxlum', $('#dLum').val());
 	formData.append('nbImage', tabPhoto.length);
         formData.append('date', dateEnregistrement);
-	formData.append('heure', heureEnregistrement); 
-        //envoi(identifiant); envoi photo non traité
+	formData.append('heure', heureEnregistrement);
+
     	if($('#nouveau').val() === 'Annuler')
     	{
             var request = new XMLHttpRequest();
             request.onreadystatechange = function() {
                 if (this.readyState === 4 && this.status === 200) {
                     //console.log(this.responseText);
-                    var myArr = JSON.parse(this.responseText);
+                    var myArr = JSON.parse(this.responseText); //myArr contient l'ID
                     var buffer = tab.reverse();
                     tab.push(myArr);
                     buffer = tab.reverse();
@@ -316,6 +332,10 @@ function BoutonEnregistrer()
                     $('#dFix').val('');
                     $('#dPrecision').val('');
                     $('#dNbrMesures').val('');
+		    
+		   identifiant= tab[0].ID; //on récupère l'id 
+
+		    envoi(identifiant); //envoi de la photo
 
                 }
             };
@@ -367,7 +387,7 @@ function BoutonEnregistrer()
         }
 
 
-            //$('#tab2').attr('class', 'ui-listview'); // cet �l�ment aura la classe ui-listview
+            //$('#tab2').attr('class', 'ui-listview'); // cet element aura la classe ui-listview
             $('#tableau').attr('class', 'ui-grid-solo'); //On degrise le tableau
 
             $('#nouveau').prop('value', 'Nouveau');
@@ -870,16 +890,11 @@ $( document ).on( "pageinit", function() {
     });
 });
 
-
-     
-
-
-
 //Ajouter des photos
 $(function(){
 if (window.File && window.FileReader && window.FormData) {
     $('#btn-apn').on('change', function (e) {
-        var file = e.target.files[0];
+        var file = e.target.files[0]; // on enregistre l'image
         if (file) {
             if (/^image\//i.test(file.type)) {
                 readFile(file);
@@ -897,11 +912,14 @@ function readFile(file) {
 
     reader.onloadend = function () {
     
-    $('#miniature').append("<div id='mini"+i+"' style='position:relative'><a href='#popupSydney"+i+"' data-rel='popup' data-position-to='window' data-transition='fade'><img class='popphoto' src='"+reader.result+"' style='width:30%'></a><img class='remove' src='test.png' height='10%' style='position:absolute; top: 1px;left: 1px;'></div>");	
-    $('#miniature').append('<div data-role="popup" id="popupSydney'+i+'" data-overlay-theme="b" data-theme="b" data-corners="false"><a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img id="photo'+i+'" class="popphoto" src="'+reader.result+'" style="max-height:512px;" alt="Sydney, Australia"></div>');
-        i++;
+    $('#miniature').append("<div id='mini"+i+"' style='position:relative'><a href='#popupSydney"+i+"' data-rel='popup' data-position-to='window' data-transition='fade'><img class='popphoto' src='"+reader.result+"' style='width:30%'></a></div>");//affichage miniature
+       
 
-        processFile(reader.result, file.type);
+    $('#miniature').append('<div data-role="popup" id="popupSydney'+i+'" data-overlay-theme="a" data-theme="d" data-corners="false"><a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right ">Close</a><img id="photo'+i+'" class="popphoto" src="'+reader.result+'" style="max-height:512px;" alt="Sydney, Australia"></div>'); //ouverture popup
+
+        i++;
+		tabPhoto.push(reader.result);//AJOUT
+        
             }
 
     reader.onerror = function () {
@@ -910,52 +928,8 @@ function readFile(file) {
 
     reader.readAsDataURL(file);
 }
-function processFile(dataURL, fileType) {
-    var maxWidth = 800;
-    var maxHeight = 800;
 
-    var image = new Image();
-    image.src = dataURL;
 
-    image.onload = function () {
-        var width = image.width;
-        var height = image.height;
-        var shouldResize = (width > maxWidth) || (height > maxHeight);
-
-        if (!shouldResize) {
-            sendFile(dataURL);
-            return;
-        }
-
-        var newWidth;
-        var newHeight;
-
-        if (width > height) {
-            newHeight = height * (maxWidth / width);
-            newWidth = maxWidth;
-        } else {
-            newWidth = width * (maxHeight / height);
-            newHeight = maxHeight;
-        }
-
-        var canvas = document.createElement('canvas');
-
-        canvas.width = newWidth;
-        canvas.height = newHeight;
-
-        var context = canvas.getContext('2d');
-
-        context.drawImage(this, 0, 0, newWidth, newHeight);
-
-        dataURL = canvas.toDataURL(fileType);
-
-        sendFile(dataURL);
-    };
-
-    image.onerror = function () {
-        alert('Erreur envois img!');
-    };
-}
 function sendFile(fileData) {
     var formData = new FormData();
 
@@ -963,13 +937,13 @@ function sendFile(fileData) {
 
     $.ajax({
         type: 'POST',
-        url: '../cgi-bin/upload/upload.cgi',
+        url: '../cgi-bin/upload.cgi',
         data: formData,
         contentType: false,
         processData: false,
         success: function (data) {
             if (data.success) {
-                alert('SuccÃ¨s: upload!');
+                alert('Succes: upload!');
             }
             
         },
@@ -984,11 +958,43 @@ $(document).on('click', '.remove', function(){
 });
 
 
+$(document).on('click', '.remove', function(){
+    $(this).parent().remove();
+});
 
 
-    
-      
+function envoi(identifiant) {
 
+
+    var formData = new FormData();  //Cr?r un ensemble de paires cl?valeur
+
+	for(var nbPhoto = 0; nbPhoto < tabPhoto.length; nbPhoto++){
+		formData.append('photo'+nbPhoto, tabPhoto[nbPhoto]); //Ajoute la valeur photo/image
+	}
+	
+    formData.append('identifiant' ,identifiant);
+	formData.append('nbPhoto', tabPhoto.length);
+	$.ajax({
+        type: 'POST',
+        url: '../cgi-bin/upload.cgi', //Lien du script cgi
+        data: formData,
+        contentType: false, //Emp?he jquery de mettre un contentType
+        processData: false, //Emp?he JQUERY de convertir les valeurs en string
+        success: function (data) {
+            if (data.success) {
+                alert('Succ?: upload!');
+            }
+            
+        },
+        error: function (data) {
+           // alert('Erreur lors de l\'upload!');
+        }
+    });
+	
+	tabPhoto.length = 0;
+	
+	
+}
 
 
 
@@ -1159,89 +1165,5 @@ function envoimailbdd(){
     }
  
 }
-
-
-
-var imgTab = new Array(); //Création du tableau
-
-function traitementImage(image){
-
-var reader = new FileReader() ;
-
-reader.onload = function(){
-
-imgTab.push(reader.result); //Récupère la valeur de l’image et l’ajoute au tableau
-
-};
-
-reader.readAsDataURL(image);
-
-}
-
-
-
-
-
-
-$(function(){
-
-if (window.File && window.FileReader && window.FormData) {
-
-    $('#capture').on('change', function (e) {
-
-        var file = e.target.files[0];
-
-        if (file) {
-
-            if (/^image\//i.test(file.type)) {
-
-                readFile(file);
-
-            }
-
-        }
-
-		$('#capture').val("");
-
-    });
-
-}
-
-});
-
-
-
-function readFile(file) {
-
-	var reader = new FileReader();
-
-
-
-	reader.onloadend = function () {
-
-		$('#miniature').append("<div id='mini' style='position:relative'><img src='"+reader.result+"' height='10%'></div>");
-
-		tabPhoto.push(reader.result);
-
-	}
-
-
-
-	reader.onerror = function () {
-
-		alert('Erreur : Lecture!');
-
-	}
-
-
-
-	reader.readAsDataURL(file);
-
-}
-
-
-
-
-
 
 

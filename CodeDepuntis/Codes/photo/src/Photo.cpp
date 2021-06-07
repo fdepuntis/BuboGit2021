@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -47,20 +48,20 @@ int Photo::getNbPhoto(string directory){
 
 int Photo::ajoute(string imgval)
 {
-	int d = mkdir((photoRepertoire+identifiant).c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+ 	
+int d = mkdir((photoRepertoire+identifiant).c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
         string lien = photoRepertoire+identifiant+"/" + identifiant+"_"+to_string(getNbPhoto(photoRepertoire+identifiant)+1)+ IMG_EXTENSION;
 
     	ofstream fichier(lien, ios::binary);
     	if(fichier.is_open()){
-		imgval.replace(imgval.find("data:image/jpeg;base64,"),
-              	string("data:image/jpeg;base64,").size(), "");
-		cout << imgval << endl;
+		imgval.replace(imgval.find("data:image/jpeg;base64,"),string("data:image/jpeg;base64,").size(), "");
+		//cout << imgval << endl;
         	fichier << base64_decode(imgval);
 		fichier.flush(); 
        		fichier.close();
         	return 1;
     	}else{
-        	printf("Erreur : %s", strerror(errno));
+        	printf("Erreur : %s", strerror(errno)); 
     	}
     	return 0;
 }

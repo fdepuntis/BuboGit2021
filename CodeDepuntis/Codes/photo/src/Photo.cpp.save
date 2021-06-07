@@ -54,13 +54,12 @@ int Photo::ajoute(string imgval)
     	if(fichier.is_open()){
 		imgval.replace(imgval.find("data:image/jpeg;base64,"),
               	string("data:image/jpeg;base64,").size(), "");
-		cout << imgval << endl;
         	fichier << base64_decode(imgval);
 		fichier.flush(); 
        		fichier.close();
-        	return 1;
+        	retur
     	}else{
-        	printf("Erreur : %s", strerror(errno));
+        	fwrite ("data:image/jpeg;base64,").size(),""); 
     	}
     	return 0;
 }

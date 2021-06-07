@@ -210,96 +210,20 @@
                     <div class="ui-block-c"  style="width: 20%;"><input id="dLum" type="text" name="LUMINOSITE" disabled></div> 
                 </div>
 
+  	  <div class="ui-grid-b"> <!--Bouton PHOTO -->
+ 		  <div class="ui-block-a" style="width: 33%;"><input type="button" id="bAllDelete" value="Tout Supprimer" ></div>
+		  <div class="ui-block-b" style="width: 33%;"><a href="#menu" id="pic" class="ui-btn ui-corner-all ui-btn-inline ui-disabled" data-rel="popup">Photo</a></div>
 
+             		 <div data-role="popup" id="menu">
+               		 <a href="#page2" data-transition="slide" class="ui-btn ui-corner-all ui-btn-inline">Aller à la Galerie</a>
+       			 <input type="file" id="btn-apn">
+                         </div>
 
+     		   <div class="ui-block-c" style="width: 33%;"><input type="button"  id="bShutdown" value="Arrêter" ></div>     	
 
-                <div class="ui-grid-b"> <!--Bouton PHOTO -->
-                    <div class="ui-block-a" style="width: 45%;"><input type="button" id="bAllDelete" value="Tout Supprimer" ></div>
-                    <div class="ui-block-b" style="width: 25%;"><a href="#menu" id="pic" style="background-color:#FFE3E3;" class="ui-btn ui-corner-all 
-                                                                   ui-btn-inline ui-disabled" data-rel="popup">Photo</a>
-                        <!--Création du pop up -->
-                        <div data-role="popup" id="menu">
-                            <a href="#page2" data-transition="slide" class="ui-btn ui-corner-all ui-btn-inline">
-                                Galerie</a>  <!--Direction la Galerie -->
-                      
+                    
 
-
-
-<input type="file" accept="image/jpeg" id="files" capture="camera"> 
-<input type="button" id="save" value="Enregistrer" enable>
-	<style>
-  .thumb {
-    height: 75px;
-    border: 1px solid #000;
-    margin: 10px 5px 0 0;
-  }
-</style>
-		<script>
-		  function handleFileSelect(evt) {
-		    var files = evt.target.files; // FileList object
-
-		    // Loop through the FileList and render image files as thumbnails.
-		    for (var i = 0, f; f = files[i]; i++) {
-
-		      // Only process image files.
-		      if (!f.type.match('image.*')) {
-			continue;
-		      }
-
-		      var reader = new FileReader();
-
-		      // Closure to capture the file information.
-		      reader.onload = (function(theFile) {
-			return function(e) {
-			  // Render thumbnail.
-			  var span = document.createElement('span');
-			  span.innerHTML = ['<img class="thumb" src="', e.target.result,
-				            '" title="', escape(theFile.name), '"/>'].join('');
-			  document.getElementById('list').insertBefore(span, null);
-			};
-		      })(f);
-
-		      // Read in the image file as a data URL.
-		      reader.readAsDataURL(f);
-		    }
-		  }
-
-		  document.getElementById('files').addEventListener('change', handleFileSelect, false);
-		
-
-
-function download(evt) {
-    var pom = document.createElement('a');
-    pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-    pom.setAttribute('download');
-
-    if (document.createEvent) {
-        var event = document.createEvent('MouseEvents');
-        event.initEvent('click', true, true);
-        pom.dispatchEvent(event);
-    }
-    else {
-        pom.click();
-    }
-}
-
-
-
-
-
-
-
-
-
-
-</script>
-
-				
-
-                        </div>
-                    </div>
-                    <div class="ui-block-c" style="width: 30%;"><input type="button"  id="bShutdown" value="Arrêter" ></div>        
-                </div>
+         </div>
 
                 <div class="ui-grid-a">
                     <div class="ui-block-a">
@@ -310,6 +234,7 @@ function download(evt) {
                     <div class="ui-block-c"><input type="button" id="envoibdd"   value="Envoi bdd" ></div>
                     
 
+ </fieldset>
 
                 </div>
             </div>
@@ -320,6 +245,8 @@ function download(evt) {
         <script type="text/javascript" src="jquery.mobile.min.js"></script>
 
 
+    </div>
+                    </div>
         <!-- </div>
        </div>
  
@@ -328,25 +255,26 @@ function download(evt) {
         <!-- Let's go page 2 -->
 
         <div data-role="page" id="page2"style="background-color:#410202" > 
-
-    <div data-role="content">
-     <label><center><h1>Bienvenue dans la Galerie !</h1></center></label>
-                <div class="ui-grid-b">
+    		 
+	<div data-role="content">
+   		      <center><h1>Bienvenue dans la Galerie !</h1></center>
+    		 </div>
+		<div class="ui-grid-b">
 
                     <div class="ui-block-a" ><img src="Bubo.png" id="photo" alt="Bubo" style="width: 90%"/></div>
                     <div class="ui-block-b" ><img src="LogoBubo.png" id="Logo" alt="logo"  /></div>
 		</div>
 
 
-
-                <div data-role="popup" class="ui-content1">
-                <div id='miniature'></div>
-                <a href="#page1" data-rel="back" data-transition="slide" class="ui-btn ui-corner-all ui-btn-inline">Go Back To Page 1</a>
-            </div>
-
-<output id="list"></output>
-</div>
+      	<div role="popup" class="ui-content">
+        	<div id='miniature'></div>
+          	   
         </div>
+		<a href="#page1" data-rel="back" data-transition="slide" class="ui-btn ui-corner-all ui-btn-inline">Revenir à la page principale</a>
+		<!--<output id="list"></output>-->
+</div>
+
+
 
         <div data-role="page" id="page3" style="background-color:#410202" > 
             <div data-role="content">
@@ -437,41 +365,41 @@ function download(evt) {
 
                 </div>
             <br>
-                <div class="ui-grid-a">    
+                                <fieldset class="ui-mobile"style="color:white">    
                     
-                    <label><h2><u>Adresses electroniques:</u></h2></label>
-                    
-                    <div class="ui-block-a" style="width: 70%;color:white"><label for="head">Entrez l'adresse source : </label></div>
-                    <div   class="ui-block-b"  style="width: 30%;"><input id="mailsrc"  style="background-color:white;" type="text" name="MAIL" ></div>
-                    
-                    <br>
-                    
-                    <div class="ui-block-a" style="width: 70%;color:white"><label for="head">Entrez l'adresse destinataire : </label></div>
-                    <div   class="ui-block-b"  style="width: 30%;"><input id="maildest"  style="background-color:white;" type="text" name="MAIL" ></div>
+                    <h2><u>Adresses electroniques:</u></h2>
+                    <div class="ui-block-a" ><label for="head">Coordonnée destinataire : </label></div>
+                    <div class="ui-field-contain">
+                       <label for="maildest" >Adresse mail</label>
+                       <input type="email" data-clear-btn="true"  name="maildest" id="maildest" value="">    
+                    </div>                    
+                    <div class="ui-block-a" ><label for="head">Coordonnées de l'expéditeur : </label></div>
                      
-                    <br>
-                    
-                    <div class="ui-block-a" style="width: 70%;color:white"><label for="head">Entrez le mot de passe de l'expéditeur : </label></div>
-                    <div   class="ui-block-b"  style="width: 30%;"><input id="mdpexp"  style="background-color:white;" type="text" name="MAIL" ></div>
-                     
-                    <br>
-                    
-                    <div class="ui-block-a" style="width: 70%;color:white"><label for="head">Entrez le numéro de port de l'expéditeur : </label></div>
-                    <div   class="ui-block-b"  style="width: 30%;"><input id="portexp"  style="background-color:white;" type="text" name="MAIL" ></div>
-                     
-                    <br>
-                    
-                    <div class="ui-block-a" style="width: 70%;color:white"><label for="head">Messagerie du client : </label></div>
-                    <div   class="ui-block-b"  style="width: 30%;"><input id="msgclient"  style="background-color:white;" type="text" name="MAIL" ></div>
+                    <div class="ui-field-contain">
+                       <label for="mailsrc" >Adresse mail</label>
+                       <input type="email" data-clear-btn="true"  name="mailsrc" id="mailsrc" value="">    
+                    </div>
+                    <div class="ui-field-contain">
+                        <label for="password" >Mot de passe </label>
+                        <!--<label for="password">Password Input:</label>-->
+                        <input type="password" name="password" id="mdpexp" value="" />
+                    </div>	
+                     <div class="ui-field-contain">
+                        <label for="portexp" >numéro de port </label>
+                        <input type="number" name="portexp" id="portexp" value="587" />
+                    </div>                    
+                     <div class="ui-field-contain">
+                        <label for="msgclient" >client messagerie </label>
+                        <input type="text" name="msgclient" data-clear-btn="true" id="msgclient" value="smtp.gmail.com" />
+                    </div>                    
 
-                </div>
+                </fieldset>
 
 
             </div>
             <br>
 
-            <a href="#page1" data-transition="slide"  class="ui-btn"  id="valider" >
-                Valider</a>  <!--Direction la Page de config et validation-->
+        <input type="submit" class=ui-btn" id="valider" value="Valider"> 
         </div>           
 </div>
 </body>
