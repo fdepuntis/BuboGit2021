@@ -1,0 +1,608 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <title>BUBO</title> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        <meta charset="UTF-8">    
+        <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="bubo2.js"></script>
+        <script src="jquery.min.js"></script>
+        <script src="jquery.sse.js"></script> 
+        <script src="changement_css.js"></script>
+        <link rel="stylesheet" href="jquery.mobile.min.css" />
+        <link rel="stylesheet" type="text/css" href="IHM.css"/>           
+	<link rel="alternate stylesheet" type="text/css" href="GIHM.css" title="GIHM"> 
+        <script language="Javascript" src="changement_css.js" type="text/javascript"></script>
+ 	
+    </head> 
+    <body onload="displayList(); lireListe(); griserChamps();">
+
+<script type="text/javascript">
+            window.addEventListener("beforeunload", function (loadPage) {
+  var confirmationMessage = "\o/";
+
+  loadPage.returnValue = confirmationMessage;     // Gecko, Trident, Chrome 34+
+  return confirmationMessage;              // Gecko, WebKit, Chrome <34
+});
+
+        </script>
+
+        <div data-role="page" id="page1">
+
+            <div data-role="content">
+
+                <div class="ui-grid-b">
+
+                    <div class="ui-block-a" ><img src="Bubo.png" id="photo" alt="Bubo" style="width: 90%"/></div>
+                    <div class="ui-block-b" ><img src="LogoBubo.png" id="Logo" alt="logo"  /></div>
+                    <div class="ui-block-c" ><input type="button" style="width: 60%" id="buttoncolor" value="Jour" ></div>
+                    <div class="ui-block-d" style="width: 33%"><input type="button"  id="modeRevue" value="Revue"></div>
+
+                </div>
+
+
+                <div id="divConteneur" class="ui-grid-solo">
+                    <!--ul data-role="listview" class="ui-listview"  id="tab2" -->
+                    <div id="tableau" class="ui-grid-solo"></div> 
+                    <!--/ulc-->
+                </div>
+
+
+                <div class="ui-grid-b">
+                    <div class="ui-block-a"><input type="button" id="nouveau"   value="Nouveau" ></div>
+                    <div class="ui-block-b"><input type="button" id="supprimer"  value="Supprimer" disabled></div>
+                    <div class="ui-block-c"><input type="button" id="modifier"  value="Modifier" disabled></div>
+                </div>
+           
+            
+                
+                <div class="ui-grid-a"> 
+                    <div class="ui-block-a" ><input type="button"  id="geo" value="Geolocaliser" disabled></div>
+                    <div class="ui-block-b" ><input type="button"  id="save" value="Enregistrer" disabled></div>        
+                </div>    
+
+                <br>
+
+
+
+                <div class="ui-block-a"><label id="labelLatitude" style="color:white;" >Informations de localisation:</label></div>    
+                <br>
+                <hr size="3" color="white">
+                <br>
+                <div id=btnGps>
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a"><label id="labelLatitude" style="color:white;" >Latitude:</label></div>
+                        <div class="ui-block-b"><label id="labelLongitude" style="color:white;" >Longitude:</label></div>
+                    </div>
+
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a "><input id="dLatitude" type="text" name="LATITUDE" disabled></div>
+                        <div class="ui-block-b "><input id="dLongitude" type="text" name="LONGITUDE" disabled></div>     
+                    </div>
+                </div>
+
+                <div id=btnRed>
+
+                    <div class="ui-grid-a">    
+                        <div class="ui-block-a"><label id="labelLatitude" style="color:white;" >Latitude:</label></div>
+                        <div class="ui-block-b"><label id="labelLongitude" style="color:white;" >Longitude:</label></div>
+
+                    </div>
+
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a" ><input id="dLatitude" type="text" style="background-color:red;"   
+                                                        value="Localisation en cours " name="LATITUDE" disabled></div>
+                        <div class="ui-block-b" ><input id="dLongitude" type="text" style="background-color:red;"  
+                                                        value="Localisation en cours " name="LONGITUDE" disabled></div>   
+
+                    </div>
+
+                </div>
+                <br>
+
+
+                <div id=geoFix>
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a" style="width: 50%;"><label id="labelAltitude" style="color:white;" >Altitude</label></div>
+                        <div class="ui-block-b" style="width: 50%;"><label id="labelSatellite" style="color:white;" >Satellites</label></div>
+                    </div>   
+
+
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a " style="width: 50%;"><input id="dAltitude" type="text" name="altitude"  disabled></div>
+                        <div class="ui-block-b " style="width: 50%;"><input id="dSatellite" type="text" name="satellites" disabled></div>     
+                    </div>
+
+
+
+
+
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a" style="width: 50%;"><label id="labelNbrMesures" style="color:white;">Nombres d'acquisitions:</label></div>
+                        <div class="ui-block-b" style="width: 25%;"><label id="labelFixe" style="color:white;">Fix:</label></div>
+                        <div class="ui-block-b" style="width: 25%;"><label id="labelPrecision" style="color:white;">HDOP:</label></div>
+                    </div>
+
+                    <div class="ui-grid-b">
+                        <div class="ui-block-a" style="width: 50%;"><input id="dNbrMesures"  type="text" name="nbrMesures" disabled></div>
+                        <div class="ui-block-b" style="width: 25%;"><input id="dFix" type="text" name="fix"   disabled></div>
+                        <div class="ui-block-c"  style="width: 25%;"><input id="dPrecision" type="text" name="precision" disabled></div> 
+                    </div>
+                </div>  
+
+                <br>
+                <div class="ui-block-a"><label id="labelLatitude" style="color:white;" >Informations complémentaires:</label></div>    
+                <br>
+                <hr size="3" color="white">
+                <br>
+
+                <div class="ui-grid-a"> 
+                    <div class="ui-block-a"><label id="TypeLampa" style="color:white;">Type de Lampadaire:</label></div> 
+                    <div class="ui-block-b"><label id="ULOR" style="color:white;">ULOR:</label></div>
+                </div>
+
+                <div class="ui-grid-a ">
+
+                    <div class="ui-block-a" style="width: 50%;" >
+                        <select class= "mesSelect" id="dlampadaire" name="LAMPADAIRE" style="background-color:#C19B9B;" disabled>
+                            <OPTION label=" "> </OPTION>
+                        </select>      
+                    </div>  
+
+                    <div class="ui-block-b" style="width: 50%;" >
+                        <select  class= "mesSelect" id="dULOR" name="ULOR" style="background-color:#C19B9B;" disabled>
+                            <OPTION label=" "> </OPTION>              
+                        </select>
+                    </div>
+                </div>
+
+                <div class="ui-grid-a">
+                    <div class="ui-block-a" style="width: 50%;"><label id="TypeAmp" style="color:white;">Type d'ampoule:</label></div>
+                    <div class="ui-block-b" style="width: 50%;"><label id="hauteur" style="color:white;">Hauteur:</label></div>
+                </div>
+
+                <div class="ui-grid-b">
+                    <div class="ui-block-a" style="width:50%;"> 
+                        <select class= "mesSelect" id="dAmpoule" name="AMPOULE" style="background-color:#C19B9B;" disabled>
+                            <OPTION label=" "> </OPTION> 
+                        </select>
+
+                    </div>
+                    <div class="ui-block-b" style="width:30%;"><input type="text" id="dheight"  name="HAUTEUR" disabled></div>
+                    <div class="ui-block-c" style="width:20%;"><label id="metres" style="color:white;">Metres</label></div>
+                </div>
+
+                <div class="ui-grid-a">
+                    <div class="ui-block-a" style="width: 65%;"><label id="puissance" style="color:white;">Puissance:</label></div>
+                    <div class="ui-block-b" style="width: 35%;"><label id="albedo" style="color:white;">Albedo :</label></div>           
+                </div>
+
+                <div class="ui-grid-b">
+                    <div class="ui-block-a" style="width: 40%;"><input id="dPuissance" type="text" name="PUISSANCE" disabled></div>
+                    <div class="ui-block-b" style="width: 20%;"><label id="watts" style="color:white;" >Watts</label></div>
+                    <div class="ui-block-c" style="width: 40%;"> 
+                        <select class= "mesSelect" id="dAlbedo"  name="ALBEDO" style="background-color:#C19B9B;" disabled>
+                            <OPTION label=" "> </OPTION> 
+                        </select>
+                    </div>
+                </div>
+
+                <div class="ui-grid-a">
+                    <div class="ui-block-a" ><label id="agglo" style="color:white;">Agglomeration:</label></div>
+                    <div class="ui-block-c" ><label id="rue" style="color:white;">Rue:</label></div>
+                </div>
+
+                <div class="ui-grid-a">
+                    <div class="ui-block-a" ><input id="dTown"  type="text" name="AGGLOMERATION" disabled></div>
+                    <div class="ui-block-b" ><input id="dStreet"  type="text" name="RUE" disabled></div>
+                </div>
+
+
+                <div class="ui-grid-a">
+                    <div class="ui-block-a" style="width: 60%;"><label id="notes" style="color:white;">Notes:</label></div>
+                    <div class="ui-block-b" style="width: 40%;"><label id="lux" style="color:white;">Flux Lux.:</label></div>
+                </div>
+
+                <div class="ui-grid-b">
+                    <div class="ui-block-a" style="width: 60%;"><input id="dNotes"  type="text" name="NOTES" disabled></div>
+                    <div class="ui-block-b" style="width: 20%;"><input type="button" style="background-color:red;"  id="bLux" value="Lux" disabled></div>
+                    <div class="ui-block-c"  style="width: 20%;"><input id="dLum" type="text" name="LUMINOSITE" disabled></div> 
+                </div>
+
+
+
+
+                <div class="ui-grid-b"> <!--Bouton PHOTO -->
+                    <div class="ui-block-a" style="width: 45%;"><input type="button" id="bAllDelete" value="Tout Supprimer" ></div>
+                    <div class="ui-block-b" style="width: 25%;"><a href="#menu" id="pic" style="background-color:#FFE3E3;" class="ui-btn ui-corner-all 
+                                                                   ui-btn-inline ui-disabled" data-rel="popup">Photo</a>
+                        <!--Création du pop up -->
+                        <div data-role="popup" id="menu">
+                            <a href="#page2" data-transition="slide" class="ui-btn ui-corner-all ui-btn-inline">
+                                Galerie</a> 
+
+ <!--Direction la Galerie -->
+
+
+
+		
+227	
+228	
+<input type="file" accept="image/jpeg" id="files" capture="camera"> 
+223	
+ <input type="file" id="btn-apn">
+229	
+        <style>
+224	
+                  <label for="btn-apn" class="input-file-trigger" tabindex="0">Prendre une photo</label>
+230	
+  .thumb {
+231	
+    height: 75px;
+232	
+    border: 1px solid #000;
+233	
+    margin: 10px 5px 0 0;
+234	
+  }
+235	
+</style>
+236	
+                <script>
+225	
+              </div>
+237	
+                  function handleFileSelect(evt) {
+238	
+                    var files = evt.target.files; // FileList object
+239	
+240	
+                    // Loop through the FileList and render image files as thumbnails.
+241	
+                    for (var i = 0, f; f = files[i]; i++) {
+242	
+243	
+                      // Only process image files.
+244	
+                      if (!f.type.match('image.*')) {
+245	
+                        continue;
+246	
+                      }
+247	
+248	
+                      var reader = new FileReader();
+249	
+250	
+                      // Closure to capture the file information.
+251	
+                      reader.onload = (function(theFile) {
+252	
+                        return function(e) {
+253	
+                          // Render thumbnail.
+254	
+                          var span = document.createElement('span');
+255	
+                          span.innerHTML = ['<img class="thumb" src="', e.target.result,
+256	
+                                            '" title="', escape(theFile.name), '"/>'].join('');
+257	
+                          document.getElementById('list').insertBefore(span, null);
+258	
+                        };
+259	
+                      })(f);
+260	
+261	
+                      // Read in the image file as a data URL.
+262	
+                      reader.readAsDataURL(f);
+263	
+                    }
+226	
+              </div>
+227	
+              <div class="ui-block-c" style="width: 35%;"><input type="button" id="save" value="Enregistrer" disabled></div>        
+228	
+          </fieldset>
+229	
+        </div>
+230	
+      </div>
+264	
+                  }
+231	
+                  
+265	
+266	
+                  document.getElementById('files').addEventListener('change', handleFileSelect, false);
+267	
+                
+268	
+269	
+270	
+function download(evt) {
+271	
+    var pom = document.createElement('a');
+272	
+    pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+273	
+    pom.setAttribute('download');
+274	
+275	
+    if (document.createEvent) {
+276	
+        var event = document.createEvent('MouseEvents');
+277	
+        event.initEvent('click', true, true);
+278	
+        pom.dispatchEvent(event);
+279	
+    }
+280	
+    else {
+281	
+        pom.click();
+282	
+    }
+283	
+}
+284	
+285	
+286	
+287	
+288	
+289	
+290	
+291	
+292	
+293	
+294	
+</script>
+295	
+296	
+                                
+297	
+298	
+                        </div>
+299	
+                    </div>
+300	
+                    <div class="ui-block-c" style="width: 30%;"><input type="button"  id="bShutdown" value="Arrêter" ></div>        
+232	
+                    <div class="ui-block-c" style="width: 30%;"><input type="button"  id="bShutdown" value="Arrêter" ></div>        
+301	
+                </div>
+233	
+                </div>
+302	
+234	
+303	
+                <div class="ui-grid-a">
+235	
+                <div class="ui-grid-a">
+304	
+                    <div class="ui-block-a">
+236	
+                    <div class="ui-block-a">
+305	
+                        <a href="#page3" data-transition="slide"
+237	
+                        <a href="#page3" data-transition="slide"
+306	
+                           class="ui-btn ui-corner-all ui-btn-inline" onclick="majcolorp3();">
+238	
+                           class="ui-btn ui-corner-all ui-btn-inline" onclick="majcolorp3();">
+307	
+                            Configuration</a></div>  <!--Direction la Page de config -->
+239	
+                            Configuration</a></div>  <!--Direction la Page de config -->
+308	
+                    <div class="ui-block-b"><a  href="bdd.txt" data-ajax="false" download><input type="button" id="eexportbdd"   value="Export bdd" ></a></div>                            
+240	
+                    <div class="ui-block-b"><a  href="bdd.txt" data-ajax="false" download><input type="button" id="eexportbdd"   value="Export bdd" ></a></div>                            
+309	
+                    <div class="ui-block-c"><input type="button" id="envoibdd"   value="Envoi bdd" ></div>
+241	
+                    <div class="ui-block-c"><input type="button" id="envoibdd"   value="Envoi bdd" ></div>
+310	
+                    
+242	
+                    
+311	
+243	
+312	
+244	
+313	
+                </div>
+245	
+                </div>
+314	
+            </div>
+246	
+            </div>
+315	
+        </div>
+247	
+        </div>
+316	
+248	
+317	
+        <script type="text/javascript" src="IHM.js"></script>  
+249	
+        <script type="text/javascript" src="IHM.js"></script>  
+318	
+        <script type="text/javascript"></script>
+250	
+        <script type="text/javascript"></script>
+319	
+        <script type="text/javascript" src="jquery.mobile.min.js"></script>
+251	
+        <script type="text/javascript" src="jquery.mobile.min.js"></script>
+320	
+252	
+321	
+253	
+322	
+        <!-- </div>
+254	
+         </div>
+323	
+       </div>
+255	
+       </div>
+324	
+256	
+	
+        -->
+
+ 
+      
+
+        <!-- Let's go page 2 -->
+
+        <div data-role="page" id="page2">
+            <div data-role="header">
+                <h1>Bienvenue dans la Galerie !</h1>
+            </div>
+
+
+            <div data-role="popup" class="ui-content">
+                <div id='miniature'></div>
+                <a href="#page1" data-rel="back" data-transition="slide" class="ui-btn ui-corner-all ui-btn-inline">Go Back To Page 1</a>
+            </div>
+
+
+        </div>
+
+        <div data-role="page" id="page3" style="background-color:#410202" > 
+            <div data-role="content">
+
+            <label><CENTER><h1>Bienvenue sur la page de configuration !</h1></CENTER></label>
+            <br>
+            
+            <div class="ui-grid-b">
+                    <div class="ui-block-a" ><img src="Bubo.png" id="photo" alt="Bubo" style="width: 90%"/></div>
+                    <div class="ui-block-b" ><img src="LogoBubo.png" id="Logo" alt="logo"  /></div>
+                    <div class="ui-block-c" ><input type="button" style="width: 60%" id="buttoncolor1" value="Jour" ></div>
+                    
+
+            </div>
+            
+            <label><h2><u>Configuration GPS:</h2></u></label>
+
+
+            <div class="ui-grid-a">
+                <div class="ui-block-a" style="width: 40%;color:white"><label id="PrecisionGps" >Vitesse de transmission du gps en Bauds </label></div>
+
+                <select name="selectorPuissance" id="selectorPuissance">
+                    <option value="0" class="0">Faire un choix</option>
+                    <option value="1" class="1">4800 bauds</option>
+                    <option value="2" class="2">9600 bauds</option>
+                </select>
+            </div>
+            <br>   
+            <div>
+                <label><h2><u>Configuration taille de la police:</h2></u></label>
+                <div class="ui-mobile label" >
+                    
+                         
+                         <button onclick="setActiveStyleSheet('IHM'); return false">Normal </button >
+                         <button onclick="setActiveStyleSheet('GIHM'); return false">Grand </button >
+                </div>
+           </div>            
+            <div>
+                <div>
+            
+                    <label for="choixGeo"><h2><u>Type de géolocalisation:</label></u></h2>
+                    <select id="choixGeo">
+                      <option value="manu">manuelle</option>
+                      <option value="auto">automatique</option>
+                    </select> 
+                    <input type="button"  id="save2" value="Enregistrer" >
+                </div>
+           </div>
+            <div>
+                <div>
+
+                    <label><h2><u>Modification de la couleur principale:</u></h2></label>
+
+                    <div style="color:white">
+
+                        <label for="head" >Choisir une couleur ou écrire une valeur </label>
+                        <input type="color" id="head" name="head"
+                               value="#410202">
+                    </div> 
+                </div>
+
+
+
+
+                <br>
+                <div class="ui-grid-a">    
+                    <div class="ui-block-a" style="width: 70%;color:white"><label for="head">Ecrire la couleur en Hexadecimal sous forme "#XXXXXX" </label></div>
+                    <div   class="ui-block-b"  style="width: 30%;"><input id="dColor"  style="background-color:white;" type="text" name="COLOR" ></div>
+
+                </div>
+
+                <div>
+                    <label><h2><u>Modification de la couleur secondaire:</u></h2></label>
+
+                    <div style="color:white">
+
+                        <label for="head1">Choisir une couleur ou écrire une valeur </label>
+                        <input type="color" id="head1" name="head1"
+                               value="#c19b9b">
+                    </div> 
+                </div>
+
+
+                <br>
+                <div class="ui-grid-a">    
+                    <div class="ui-block-a" style="width: 70%;color:white"><label  for="head">Ecrire la couleur en Hexadecimal sous forme "#XXXXXX" </label></div>
+                    <div   class="ui-block-b"  style="width: 30%;"><input id="dColor1"  style="background-color:white;" type="text" name="COLOR1" ></div>
+
+                </div>
+            <br>
+                <div class="ui-grid-a">    
+                    
+                    <label><h2><u>Adresses electroniques:</u></h2></label>
+                    
+                    <div class="ui-block-a" style="width: 70%;color:white"><label for="head">Entrez l'adresse source : </label></div>
+                    <div   class="ui-block-b"  style="width: 30%;"><input id="mailsrc"  style="background-color:white;" type="text" name="MAIL" ></div>
+                    
+                    <br>
+                    
+                    <div class="ui-block-a" style="width: 70%;color:white"><label for="head">Entrez l'adresse destinataire : </label></div>
+                    <div   class="ui-block-b"  style="width: 30%;"><input id="maildest"  style="background-color:white;" type="text" name="MAIL" ></div>
+                     
+                    <br>
+                    
+                    <div class="ui-block-a" style="width: 70%;color:white"><label for="head">Entrez le mot de passe de l'expéditeur : </label></div>
+                    <div   class="ui-block-b"  style="width: 30%;"><input id="mdpexp"  style="background-color:white;" type="text" name="MAIL" ></div>
+                     
+                    <br>
+                    
+                    <div class="ui-block-a" style="width: 70%;color:white"><label for="head">Entrez le numéro de port de l'expéditeur : </label></div>
+                    <div   class="ui-block-b"  style="width: 30%;"><input id="portexp"  style="background-color:white;" type="text" name="MAIL" ></div>
+                     
+                    <br>
+                    
+                    <div class="ui-block-a" style="width: 70%;color:white"><label for="head">Messagerie du client : </label></div>
+                    <div   class="ui-block-b"  style="width: 30%;"><input id="msgclient"  style="background-color:white;" type="text" name="MAIL" ></div>
+
+                </div>
+
+
+            </div>
+            <br>
+
+            <a href="#page1" data-transition="slide"  class="ui-btn"  id="valider" >
+                Valider</a>  <!--Direction la Page de config et validation-->
+        </div>           
+</div>
+</body>
+</body>
+    
+</html>

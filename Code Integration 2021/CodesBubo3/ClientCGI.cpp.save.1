@@ -1,0 +1,121 @@
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <stdio.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <unistd.h>
+#include <cstring>
+#include <string>
+#include <stdlib.h>
+#include <fcntl.h> 
+#include <iostream> 
+#include "Poco/JSON/Parser.h"
+#include "Poco/JSON/Object.h"
+#include "Poco/Dynamic/Var.h"
+#include "Poco/JSON/Stringifier.h"
+#define MAX 1048576
+#define PORT 7256 
+#define SA struct sockaddr 
+
+using namespace std;
+
+int main() 
+{ 
+	int sockfd, connfd, length; 
+	struct sockaddr_in servaddr, cli; 
+	char buff[MAX]; 
+	string demandeLocalisation = "localiser";
+	string listerEnregistrements = "listerEnregistrement";
+	string enregistrer = "enregistrer";
+	char demande;
+
+	// socket create and varification 
+	sockfd = socket(AF_INET, SOCK_STREAM, 0); 
+	if (sockfd == -1) { 
+		cout<<"socket creation failed...\n"<<endl; 
+		exit(0); 
+	} 
+	else
+		cout<<"Socket successfully created..\n"<<endl; 
+	memset(&servaddr, 0 , sizeof(servaddr)); 
+
+	// assign IP, PORT 
+	servaddr.sin_family = AF_INET; 
+	servaddr.sin_addr.s_addr = inet_addr("127.0.0.1"); 
+	servaddr.sin_port = htons(PORT); 
+
+	// connect the client socket to server socket 
+	if (connect(sockfd, (SA*)&servaddr, sizeof(servaddr)) != 0) { 
+		cout<<"connection with the server failed..."<<endl; 
+		exit(0); 
+	} 
+	else
+	cout<<"connected to the server.."<<endl; 
+	cout<<"Que souhaitez-vous faire? A. geolocaliser B. listerEnregistrements C. enregistrer "<<endl;
+	cin>> demande;
+	if (demande=='A')
+	{
+		length = send(sockfd, demandeLocalisation.c_str(),demandeLocalisation.size(),0); 
+		printf("Le message est : %s de %d octets\n", demandeLocalisation.c_str(), length);
+	}
+	if (demande=='B')
+	{
+		length = send(sockfd, listerEnregistrements.c_str(),listerEnregistrements.size(),0); 
+		printf("Le message est : %s de %d octets\n", listerEnregistrements.c_str(), length);
+	}
+
+	if (demande=='C')
+	{
+
+        string albedo="0,4";
+		string fluxLum="23";
+		string lamp="Galogenures metalliques";
+		string streetlight="Mat routier standard";
+		string height="8";
+		int power=12;
+		double aLatitude= 43.23568;
+		double aLongitude=1.1235468;
+		int aAltitude = 140;
+		int aNbImages=3;
+		string town="Colomiers";
+		string aNotes="";
+		string street="34 boulevard victor Hugo";
+		int ULOR=10;
+		string aDate="210425";
+		string aHeure="161230"; 
+		enregistrer+="\n\t\t{";
+		enregistrer+="\n\t\t\t\"POWER\":\""+to_string(power)+"\",";
+		enregistrer+="\n\t\t\t\"ALBEDO\":\""+albedo+"\",";
+		enregistrer+="\n\t\t\t\"FLUX\":\""+fluxLum+"\",";
+		enregistrer+="\n\t\t\t\"LAMP\":\""+lamp +"\",";
+		enregistrer+="\n\t\t\t\"STREETLIGHT\":\""+streetlight +"\",";
+		enregistrer+="\n\t\t\t\"HEIGHT\":\""+height +"\",";
+		enregistrer+="\n\t\t\t\"LATITUDE\":\""+to_string(aLatitude) +"\",";
+		enregistrer+="\n\t\t\t\"LONGITUDE\":\""+to_string(aLongitude) +"\",";
+		enregistrer+="\n\t\t\t\"ALTITUDE\":\""+to_string(aAltitude) +"\",";
+		enregistrer+="\n\t\t\t\"NBIMAGES\":\""+to_string(aNbImages) +"\",";
+		enregistrer+="\n\t\t\t\"TOWN\":\""+town +"\",";
+		enregistrer+="\n\t\t\t\"STREET\":\""+street +"\",";
+		enregistrer+="\n\t\t\t\"ULOR\":\""+to_string(ULOR)+"\",";
+		enregistrer+="\n\t\t\t\"DATE\":\""+aDate+"\",";
+		enregistrer+="\n\t\t\t\"HEURE\":\""+aHeure+"\",";
+		enregistrer+="\n\t\t\t\"NOTES\":\""+aNotes+"\"";
+		enregistrer+="\n\t\t}";
+		length = send(sockfd, enregistrer.c_str(),enregistrer.size(),0); 
+		printf("Le message est : %s de %d octets\n", enregistrer.c_str(), length);
+	}
+	memset(buff,0 , sizeof(buff)); 
+
+	int taille = read(sockfd, buff, sizeof(buff));
+	perror("problème lecture"); 
+	cout<<string(buff)<<endl;
+	printf("From Server : %s avec %d octets \n", buff, taille); 
+	if ((strncmp(buff, "exit", 4)) == 0) { 
+		cout<<"Client Exit..."<<endl; 
+		exit(0);  
+	} 
+
+	// close the socket 
+	close(sockfd); 
+} 
+
